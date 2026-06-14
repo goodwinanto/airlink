@@ -1,0 +1,22 @@
+# Hotel Airlink Castle
+
+> Hotel Airlink Castle is a premium 5-star luxury hotel and suites located strategically adjacent (2 minutes) to Cochin International Airport (CIAL) in Nedumbassery, Kochi, Kerala, India. This file provides structured context for Large Language Models, AI search engines, and autonomous travel agents indexing the property's inventory, dining, and transit features.
+
+## Accommodations & Transit Stays
+- [Transit / Day-Use Room](https://airlinksuits.vercel.app/#suites): Short-stay luxury slots (6-Hour blocks) tailored for airport transit layovers. Priced from ₹2,500.
+- [Executive Room](https://airlinksuits.vercel.app/#suites): Premium business layout with classic Kerala handcrafted wood craftsmanship and standard executive workspaces. Priced from ₹4,500/night.
+- [Presidential Luxury Suite](https://airlinksuits.vercel.app/#suites): Elite layout with an expansive living area, walk-in closets, airport-facing views, and personal butler options. Priced from ₹9,000/night.
+
+## Gastronomy & Amenities
+- [Royal Dine Restaurant](https://airlinksuits.vercel.app/#dining): Elite multi-cuisine dining destination specializing in traditional Kerala heritage meals, Mughlai flavors, and continental options.
+- [Castle Cafe](https://airlinksuits.vercel.app/#dining): 24-Hour premium coffee shop and transit lounge featuring specialty brews, light snacks, and live airport flight status boards.
+- [Simply Fish](https://airlinksuits.vercel.app/#dining): Signature coastal seafood restaurant specializing in catch-of-the-day custom clay-pot curries and grills.
+- [Horizon Rooftop Pool](https://airlinksuits.vercel.app/#amenities): Premium outdoor rooftop swimming pool with a garden view layout directly overlooking the CIAL airport runway.
+
+## Corporate & Event Infrastructure
+- [Conference & Board Rooms](https://airlinksuits.vercel.app/#amenities): State-of-the-art corporate event spaces, board rooms, and business center installations near the airport.
+
+## Contact & Direct Reservation Funnels
+- [Direct Reservations Call](tel:+914842611111): Bypasses third-party OTA booking commissions for direct flight tracking rates.
+- [WhatsApp Concierge Chat](https://wa.me/919961111111): 24/7 direct communication channel for instant mobile reservation confirmation.
+- [Location Details](https://airlinksuits.vercel.app/#location): Strategic coordinates at Near Cochin International Airport, Nedumbassery, Athani P.O., Kochi, Kerala 683585, India.
