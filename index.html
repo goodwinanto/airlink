@@ -13,7 +13,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS resets and custom variables */
+    /* Global rules - Added at the top of CSS as requested */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: var(--bg-ivory-light);
+      color: var(--text-charcoal);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    section {
+      padding: 64px 24px;
+      position: relative;
+    }
+
+    /* CSS variables */
     :root {
       --bg-ivory-light: #F8F4EE;
       --bg-ivory-deep: #F2EDE4;
@@ -24,31 +51,12 @@
     }
 
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       border-radius: 0 !important; /* Non-negotiable sharp corners */
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
     }
 
     html {
       scroll-behavior: smooth;
       background-color: var(--bg-ivory-light);
-      color: var(--text-charcoal);
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      background-color: var(--bg-ivory-light);
-      overflow-x: hidden;
-      color: var(--text-charcoal);
     }
 
     /* Typography */
@@ -104,6 +112,7 @@
       display: flex;
       flex-direction: column;
       color: var(--bg-ivory-light); /* White on dark hero banner */
+      z-index: 102;
     }
 
     header.scrolled .logo, nav.scrolled .logo {
@@ -130,9 +139,9 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 40px;
       margin-left: auto;
-      margin-right: 50px;
     }
 
     .nav-links a {
@@ -153,7 +162,7 @@
       color: var(--accent-gold);
     }
 
-    /* Restrained CTA Button - 48px tap target */
+    /* Restrained CTA Button - 48px tap target desktop */
     .cta-button {
       display: inline-flex;
       align-items: center;
@@ -178,11 +187,79 @@
       color: var(--bg-ivory-light);
     }
 
-    /* Section padding - Extreme luxury spacing */
-    section {
-      padding-top: 140px;
-      padding-bottom: 140px;
-      position: relative;
+    /* Mobile Hamburger Trigger */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+      z-index: 102;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--bg-ivory-light);
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled .menu-toggle span, nav.scrolled .menu-toggle span {
+      background-color: var(--text-charcoal);
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+      background-color: var(--text-charcoal) !important;
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+      background-color: var(--text-charcoal) !important;
+    }
+
+    /* Mobile Dropdown Overlay */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: var(--bg-ivory-light);
+      border-bottom: 1px solid var(--border-color);
+      padding: 30px 24px;
+      gap: 20px;
+      z-index: 99;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .mobile-menu a {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-charcoal);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .mobile-menu .cta-button {
+      margin-top: 10px;
+      width: 100%;
+      height: 52px;
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Alternating light section backgrounds */
@@ -206,9 +283,10 @@
       transform: translateY(0);
     }
 
-    /* 1. Hero section (remains dark with image overlay) */
+    /* 1. Hero section */
     #hero, .hero {
       height: 100vh;
+      min-height: 100vh;
       width: 100vw;
       padding: 0;
       display: flex;
@@ -225,7 +303,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* Keep subtle dark gradient overlay on the hero image so headline stays readable */
       background-image: linear-gradient(rgba(26, 22, 20, 0.5), rgba(26, 22, 20, 0.8)), url('/images/hotel/pool-night.jpg');
       background-size: cover;
       background-position: center;
@@ -238,6 +315,7 @@
       text-align: center;
       max-w: 1000px;
       padding: 0 30px;
+      width: 100%;
     }
 
     .hero-subline {
@@ -598,7 +676,7 @@
       border-bottom-color: var(--accent-gold);
     }
 
-    /* 8. Footer (remains dark with deep charcoal base) */
+    /* 8. Footer */
     footer {
       background-color: #12100E;
       padding: 100px 40px 60px 40px;
@@ -653,102 +731,237 @@
       font-weight: 400;
     }
 
-    /* Mobile optimization — phones first */
-    @media (max-width: 768px) {
+    /* Desktop overrides */
+    @media (min-width: 769px) {
       section {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding: 140px 40px;
+      }
+    }
+
+    /* 9. Typography global mobile rules */
+    @media (max-width: 768px) {
+      h1 { font-size: clamp(2rem, 8vw, 3.2rem); }
+      h2 { font-size: clamp(1.6rem, 5vw, 2.4rem); }
+      h3 { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+      p  { font-size: 1rem; line-height: 1.7; }
+      
+      .section-label, .section-title {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
       }
 
+      /* 1. Mobile Header & Nav Toggling */
       .nav-links {
-        display: none;
+        display: none !important;
       }
-      
+      .menu-toggle {
+        display: flex;
+      }
+      .mobile-menu.active {
+        display: flex;
+      }
+
       .nav-container {
         padding: 16px 20px;
         justify-content: space-between;
       }
 
-      nav {
-        padding: 16px 20px;
-      }
-
-      .logo-main {
-        font-size: 18px;
+      /* 2. Hero mobile constraints */
+      #hero, .hero {
+        height: 100vh;
+        min-height: 100vh;
       }
 
       .hero h1, .hero-headline {
-        font-size: clamp(2rem, 8vw, 3.2rem);
+        font-size: clamp(2rem, 8vw, 5rem);
         padding: 0 20px;
       }
 
-      .castle-layout {
-        flex-direction: column;
-        gap: 40px;
+      .hero-subline {
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        margin-bottom: 20px;
       }
 
-      .castle-quote-container, .castle-visual {
-        width: 100%;
+      #hero .cta-button, .hero .cta-button {
+        height: 52px !important;
+        min-height: 52px !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        padding: 0 40px;
       }
 
-      .castle-quote {
-        font-size: 24px;
+      /* 3. Suites mobile constraints */
+      #suites {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        gap: 64px !important;
       }
 
-      .castle-visual {
-        height: 300px;
-      }
-
-      /* Stack layout on mobile */
-      .suite-row,
-      .dining-row,
-      .dining-grid {
+      .suite-row {
         flex-direction: column !important;
-        display: flex !important;
-        gap: 40px !important;
-        padding: 48px 20px !important;
+        gap: 0 !important;
+        padding: 0 !important;
       }
 
-      .suite-image,
-      .suite-info,
-      .dining-card {
+      .suite-image {
         width: 100% !important;
+        height: 240px !important;
+        border: none !important;
+        margin: 0 !important;
       }
 
-      .suite-image img,
-      .suite-row img,
-      .dining-row img,
-      .dining-image img {
+      .suite-image img {
         width: 100% !important;
-        height: 260px !important;
+        height: 240px !important;
         object-fit: cover !important;
       }
 
       .suite-info {
-        align-items: center;
-        text-align: center;
+        width: 100% !important;
+        padding: 28px 24px !important;
+        background-color: var(--bg-ivory-light);
+        align-items: stretch !important;
+        text-align: left !important;
       }
 
+      section:nth-of-type(even) .suite-info {
+        background-color: var(--bg-ivory-deep);
+      }
+
+      .suite-info .suite-name {
+        margin-bottom: 16px;
+      }
+
+      .suite-info .suite-description {
+        margin-bottom: 24px;
+        font-size: 15px;
+      }
+
+      /* "Enquire" full width, min 48px height */
+      .suite-info .suite-action.gold-link {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 100% !important;
+        height: 48px !important;
+        min-height: 48px !important;
+        border: 1px solid var(--accent-gold) !important;
+        color: var(--accent-gold) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-top: 16px;
+        background: transparent;
+        padding: 0 !important;
+      }
+
+      /* 4. Dining mobile constraints */
+      #dining {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      .dining-grid, .dining-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 64px !important;
+        padding: 48px 0 0 0 !important;
+      }
+
+      .dining-card {
+        width: 100% !important;
+        gap: 0 !important;
+      }
+
+      .dining-image {
+        width: 100% !important;
+        height: 240px !important;
+        margin: 0 !important;
+        border: none !important;
+      }
+
+      .dining-image img {
+        width: 100% !important;
+        height: 240px !important;
+        object-fit: cover !important;
+      }
+
+      .dining-card .dining-name {
+        padding: 28px 24px 12px 24px !important;
+        margin: 0 !important;
+      }
+
+      .dining-card .dining-description {
+        padding: 0 24px 28px 24px !important;
+        margin: 0 !important;
+        font-size: 15px;
+      }
+
+      /* 5. Stats mobile constraints */
       .stats-container, .stats-row {
-        flex-direction: column;
-        display: flex;
-        gap: 32px;
-        text-align: center;
-        padding: 0 20px;
+        flex-direction: column !important;
+        display: flex !important;
+        gap: 32px !important;
+        text-align: center !important;
+        padding: 0 24px !important;
+      }
+
+      /* 6. Testimonials mobile constraints */
+      .quote-mark {
+        font-size: clamp(3rem, 10vw, 5rem) !important;
+        margin-bottom: 20px !important;
       }
 
       .testimonial-text {
-        font-size: 20px;
+        font-size: clamp(1.1rem, 4vw, 1.6rem) !important;
+        padding: 0 10px !important;
       }
 
-      .arrival-headline {
-        font-size: 24px;
+      .testimonial-author {
+        text-align: center !important;
       }
 
+      /* 7. Arrival mobile constraints */
+      .arrival-address {
+        padding: 0 10px !important;
+        font-size: 14px !important;
+      }
+
+      .arrival-actions {
+        width: 100% !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding: 0 24px !important;
+      }
+
+      .arrival-actions .cta-button,
+      .arrival-actions .arrival-link {
+        width: 100% !important;
+        height: 52px !important;
+        min-height: 52px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        border: 1px solid var(--accent-gold) !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 13px !important;
+      }
+
+      /* 8. Footer mobile constraints */
       .footer-links, .footer-nav {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
+        flex-direction: column !important;
+        gap: 12px !important;
+        text-align: center !important;
+        margin-bottom: 40px !important;
+      }
+
+      .footer-links a, .footer-nav a {
+        border-bottom: none !important;
+        padding: 6px 0 !important;
       }
     }
   </style>
@@ -762,11 +975,28 @@
         <span class="logo-main">Airlink Castle</span>
         <span class="logo-sub">Kerala · India</span>
       </a>
+      
+      <!-- Desktop Navigation Links -->
       <div class="nav-links">
         <a href="#suites">Suites</a>
         <a href="#dining">Dining</a>
         <a href="#arrival">Arrival</a>
+        <a href="https://wa.me/919961111111" class="cta-button">Reserve</a>
       </div>
+
+      <!-- Hamburger Menu Toggle (Mobile only) -->
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#suites">Suites</a>
+      <a href="#dining">Dining</a>
+      <a href="#arrival">Arrival</a>
       <a href="https://wa.me/919961111111" class="cta-button">Reserve</a>
     </div>
   </header>
@@ -809,7 +1039,7 @@
       <div class="suite-info">
         <h3 class="suite-name">The Wayfarer Suite</h3>
         <p class="suite-description">For those between worlds. A considered refuge with all that a single night demands.</p>
-        <span class="suite-action">Rates and availability on request</span>
+        <span style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 8px;">Rates and availability on request</span>
         <a href="https://wa.me/919961111111" class="suite-action gold-link">Enquire</a>
       </div>
     </div>
@@ -822,7 +1052,7 @@
       <div class="suite-info">
         <h3 class="suite-name">The Castle Suite</h3>
         <p class="suite-description">Unhurried space for the guest who expects more than comfort — they expect taste.</p>
-        <span class="suite-action">Rates and availability on request</span>
+        <span style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 8px;">Rates and availability on request</span>
         <a href="https://wa.me/919961111111" class="suite-action gold-link">Enquire</a>
       </div>
     </div>
@@ -835,7 +1065,7 @@
       <div class="suite-info">
         <h3 class="suite-name">The Sovereign</h3>
         <p class="suite-description">The castle's finest room. Reserved for those who require nothing explained.</p>
-        <span class="suite-action">Rates and availability on request</span>
+        <span style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 8px;">Rates and availability on request</span>
         <a href="https://wa.me/919961111111" class="suite-action gold-link">Enquire</a>
       </div>
     </div>
@@ -938,6 +1168,24 @@
   </footer>
 
   <script>
+    // Mobile Hamburger Menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close menu when links are clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
     // Header background change on scroll
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     // Header background change on scroll
@@ -44,21 +45,54 @@ export default function Home() {
     };
   }, []);
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       {/* Clean Navigation Header */}
-      <header className={isScrolled ? "scrolled" : ""}>
+      <header id="header" className={isScrolled ? "scrolled" : ""}>
         <div className="nav-container">
-          <a href="#" className="logo">
+          <a href="#" className="logo" onClick={closeMenu}>
             <span className="logo-main">Airlink Castle</span>
             <span className="logo-sub">Kerala · India</span>
           </a>
+          
+          {/* Desktop Links (hidden on mobile) */}
           <div className="nav-links">
             <a href="#suites">Suites</a>
             <a href="#dining">Dining</a>
             <a href="#arrival">Arrival</a>
+            <a href="https://wa.me/919961111111" className="cta-button">
+              Reserve
+            </a>
           </div>
-          <a href="https://wa.me/919961111111" className="cta-button">
+
+          {/* Hamburger Menu Toggle (visible on mobile only) */}
+          <button
+            className={`menu-toggle ${isMenuOpen ? "active" : ""}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu (hidden on desktop) */}
+        <div className={`mobile-menu ${isMenuOpen ? "active" : ""}`}>
+          <a href="#suites" onClick={closeMenu}>
+            Suites
+          </a>
+          <a href="#dining" onClick={closeMenu}>
+            Dining
+          </a>
+          <a href="#arrival" onClick={closeMenu}>
+            Arrival
+          </a>
+          <a href="https://wa.me/919961111111" className="cta-button" onClick={closeMenu}>
             Reserve
           </a>
         </div>
@@ -110,7 +144,9 @@ export default function Home() {
             <p className="suite-description">
               For those between worlds. A considered refuge with all that a single night demands.
             </p>
-            <span className="suite-action">Rates and availability on request</span>
+            <span style={{ fontSize: "13px", color: "var(--text-muted)", display: "block", marginTop: "8px" }}>
+              Rates and availability on request
+            </span>
             <a href="https://wa.me/919961111111" className="suite-action gold-link">
               Enquire
             </a>
@@ -127,7 +163,9 @@ export default function Home() {
             <p className="suite-description">
               Unhurried space for the guest who expects more than comfort — they expect taste.
             </p>
-            <span className="suite-action">Rates and availability on request</span>
+            <span style={{ fontSize: "13px", color: "var(--text-muted)", display: "block", marginTop: "8px" }}>
+              Rates and availability on request
+            </span>
             <a href="https://wa.me/919961111111" className="suite-action gold-link">
               Enquire
             </a>
@@ -147,7 +185,9 @@ export default function Home() {
             <p className="suite-description">
               The castle's finest room. Reserved for those who require nothing explained.
             </p>
-            <span className="suite-action">Rates and availability on request</span>
+            <span style={{ fontSize: "13px", color: "var(--text-muted)", display: "block", marginTop: "8px" }}>
+              Rates and availability on request
+            </span>
             <a href="https://wa.me/919961111111" className="suite-action gold-link">
               Enquire
             </a>
