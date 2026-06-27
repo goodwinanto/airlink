@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "600"],
   display: "swap",
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-dmsans",
 });
 
 export const metadata: Metadata = {
-  title: "Hotel Airlink Castle | 5-Star Luxury Hotel near Cochin Airport (CIAL)",
-  description: "Experience premium 5-star luxury at Hotel Airlink Castle, located just 2 minutes from Cochin International Airport. Features the Horizon rooftop pool, signature wooden suites, and Royal Dine dining.",
+  title: "Hotel Airlink Castle | A Five-Star Sanctuary in Kerala",
+  description: "Built at the threshold of arrival and stillness, Hotel Airlink Castle is where Kerala's most discerning travellers choose to pause.",
 };
 
 export default function RootLayout({
@@ -27,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} h-full scroll-smooth antialiased`}
+      className={`${cormorant.variable} ${dmSans.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans selection:bg-[#D4AF37] selection:text-neutral-950">
+      <body className="min-h-full flex flex-col bg-[#080808] text-[#F5F0E8]">
         {children}
       </body>
     </html>

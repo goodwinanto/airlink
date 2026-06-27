@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Airlink Castle | A Five-Star Sanctuary in Kerala</title>
+  <!-- SEO & Meta -->
+  <meta name="description" content="Built at the threshold of arrival and stillness, Hotel Airlink Castle is a five-star sanctuary in Kerala. Explore our unhurried suites and elite dining.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS resets and custom variables */
+    :root {
+      --bg-obsidian: #080808;
+      --accent-gold: #B8972A;
+      --text-ivory: #F5F0E8;
+      --text-muted: #A8A095;
+      --border-color: rgba(184, 151, 42, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important; /* Non-negotiable sharp corners */
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-obsidian);
+      color: var(--text-ivory);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-obsidian);
+      overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, .serif-font {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    p, .sans-font {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.4s ease;
+    }
+
+    /* Clean navigation header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: background-color 0.6s ease, border-bottom 0.6s ease;
+      background-color: transparent;
+      border-bottom: 1px solid transparent;
+    }
+
+    header.scrolled {
+      background-color: rgba(8, 8, 8, 0.95);
+      border-bottom: 1px solid rgba(184, 151, 42, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-w: 1400px;
+      margin: 0 auto;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: justify;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-main {
+      font-size: 20px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .logo-sub {
+      font-size: 8px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      margin-left: auto;
+      margin-right: 50px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-gold);
+    }
+
+    /* Restrained CTA Button */
+    .cta-button {
+      display: inline-block;
+      padding: 12px 32px;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent-gold);
+      color: var(--bg-obsidian);
+    }
+
+    /* Section padding - Extreme luxury spacing */
+    section {
+      padding-top: 140px;
+      padding-bottom: 140px;
+      position: relative;
+    }
+
+    /* Fade-in transition using scroll entry */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 1. Hero section */
+    #hero {
+      height: 100vh;
+      width: 100vw;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(8, 8, 8, 0.55), rgba(8, 8, 8, 0.85)), url('/images/hotel/pool-night.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-w: 900px;
+      padding: 0 30px;
+    }
+
+    .hero-subline {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--accent-gold);
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    .hero-headline {
+      font-size: 64px;
+      color: var(--text-ivory);
+      line-height: 1.15;
+      margin-bottom: 45px;
+      font-style: italic;
+    }
+
+    /* 2. The Castle introduction */
+    #castle {
+      max-w: 1400px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .castle-layout {
+      display: flex;
+      align-items: center;
+      gap: 100px;
+    }
+
+    .castle-quote-container {
+      width: 60%;
+    }
+
+    .castle-quote {
+      font-size: 38px;
+      line-height: 1.4;
+      color: var(--text-ivory);
+      font-style: italic;
+    }
+
+    .castle-quote .gold-word {
+      color: var(--accent-gold);
+      font-style: normal;
+    }
+
+    .castle-visual {
+      width: 40%;
+      height: 550px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .castle-visual img {
+      width: 100%;
+      height: 100%;
+      object-cover: cover;
+      filter: grayscale(20%) brightness(75%);
+      transition: transform 1.5s ease;
+    }
+
+    .castle-visual:hover img {
+      transform: scale(1.03);
+    }
+
+    /* 3. Suites alternating layout */
+    #suites {
+      max-w: 1400px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 180px;
+    }
+
+    .section-title-wrapper {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      letter-spacing: 0.35em;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .suite-row {
+      display: flex;
+      align-items: center;
+      gap: 120px;
+    }
+
+    .suite-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .suite-image {
+      width: 55%;
+      height: 580px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .suite-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(80%);
+      transition: transform 1.5s ease;
+    }
+
+    .suite-image:hover img {
+      transform: scale(1.02);
+    }
+
+    .suite-info {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .suite-name {
+      font-size: 40px;
+      color: var(--text-ivory);
+      margin-bottom: 25px;
+    }
+
+    .suite-description {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+      max-w: 480px;
+    }
+
+    .suite-action {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--text-ivory);
+      font-weight: 400;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+      margin-top: 10px;
+    }
+
+    .suite-action.gold-link {
+      color: var(--accent-gold);
+      border-bottom: 1px solid rgba(184, 151, 42, 0.4);
+    }
+
+    .suite-action.gold-link:hover {
+      border-bottom-color: var(--accent-gold);
+    }
+
+    /* 4. Dining experiences */
+    #dining {
+      max-w: 1400px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .dining-grid {
+      display: grid;
+      grid-template-cols: repeat(3, 1fr);
+      gap: 50px;
+      margin-top: 40px;
+    }
+
+    .dining-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dining-image {
+      height: 400px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      margin-bottom: 30px;
+    }
+
+    .dining-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(75%);
+      transition: transform 1.5s ease;
+    }
+
+    .dining-card:hover .dining-image img {
+      transform: scale(1.02);
+    }
+
+    .dining-name {
+      font-size: 28px;
+      color: var(--text-ivory);
+      margin-bottom: 12px;
+    }
+
+    .dining-description {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-w: 360px;
+    }
+
+    .dining-description em {
+      color: var(--text-ivory);
+      font-style: normal;
+    }
+
+    /* 5. Stats Section */
+    #stats {
+      background-color: #050505;
+      border-y: 1px solid rgba(184, 151, 42, 0.1);
+    }
+
+    .stats-container {
+      max-w: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-cols: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      color: var(--accent-gold);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .stat-desc {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-ivory);
+      font-weight: 300;
+    }
+
+    /* 6. Testimonials */
+    #testimonials {
+      background-color: var(--bg-obsidian);
+      overflow: hidden;
+    }
+
+    .testimonial-container {
+      max-w: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 180px;
+      color: var(--accent-gold);
+      line-height: 0.1;
+      margin-bottom: 60px;
+      display: block;
+      opacity: 0.6;
+    }
+
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      line-height: 1.5;
+      font-style: italic;
+      color: var(--text-ivory);
+      margin-bottom: 40px;
+    }
+
+    .testimonial-author {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* 7. Arrival */
+    #arrival {
+      max-w: 900px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+      text-align: center;
+    }
+
+    .arrival-headline {
+      font-size: 40px;
+      margin-bottom: 25px;
+      color: var(--text-ivory);
+    }
+
+    .arrival-address {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .arrival-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .arrival-link {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      border-bottom: 1px solid rgba(184, 151, 42, 0.4);
+      padding-bottom: 4px;
+    }
+
+    .arrival-link:hover {
+      border-bottom-color: var(--accent-gold);
+    }
+
+    /* 8. Footer */
+    footer {
+      background-color: #030303;
+      padding: 100px 40px 60px 40px;
+      border-top: 1px solid rgba(184, 151, 42, 0.08);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--text-ivory);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .footer-divider {
+      width: 80px;
+      height: 1px;
+      background-color: var(--accent-gold);
+      margin: 0 auto 40px auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-links a {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-gold);
+    }
+
+    .footer-copy {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(168, 160, 149, 0.4);
+    }
+
+    /* Responsive styles */
+    @media (max-w: 1024px) {
+      section {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+      
+      .hero-headline {
+        font-size: 48px;
+      }
+
+      .castle-layout {
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      .castle-quote-container, .castle-visual {
+        width: 100%;
+      }
+
+      .castle-visual {
+        height: 400px;
+      }
+
+      .suite-row {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .suite-row.reverse {
+        flex-direction: column;
+      }
+
+      .suite-image, .suite-info {
+        width: 100%;
+      }
+
+      .suite-image {
+        height: 400px;
+      }
+
+      .dining-grid {
+        grid-template-cols: 1fr;
+        gap: 70px;
+      }
+
+      .stats-container {
+        grid-template-cols: repeat(2, 1fr);
+        gap: 50px;
+      }
+    }
+
+    @media (max-w: 768px) {
+      .nav-links {
+        display: none; /* In luxury standards, mobile views hide redundant controls, keeping layout extremely clean */
+      }
+      
+      .nav-container {
+        justify-content: space-between;
+      }
+
+      .hero-headline {
+        font-size: 38px;
+      }
+
+      .castle-quote {
+        font-size: 28px;
+      }
+
+      .suite-name {
+        font-size: 32px;
+      }
+
+      .stats-container {
+        grid-template-cols: 1fr;
+      }
+
+      .testimonial-text {
+        font-size: 24px;
+      }
+
+      .arrival-headline {
+        font-size: 30px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Clean Navigation Header -->
+  <header id="header">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-main">Airlink Castle</span>
+        <span class="logo-sub">Kerala · India</span>
+      </a>
+      <div class="nav-links">
+        <a href="#suites">Suites</a>
+        <a href="#dining">Dining</a>
+        <a href="#arrival">Arrival</a>
+      </div>
+      <a href="https://wa.me/919961111111" class="cta-button">Reserve</a>
+    </div>
+  </header>
+
+  <!-- 1. Hero Section -->
+  <section id="hero">
+    <div class="hero-image-bg"></div>
+    <div class="hero-content">
+      <div class="hero-subline">COCHIN · KERALA · INDIA</div>
+      <h1 class="hero-headline">Some arrivals are destinations in themselves.</h1>
+      <a href="#suites" class="cta-button">Reserve a Suite</a>
+    </div>
+  </section>
+
+  <!-- 2. The Castle Editorial Section -->
+  <section id="castle" class="fade-in">
+    <div class="castle-layout">
+      <div class="castle-quote-container">
+        <blockquote class="castle-quote">
+          Built at the threshold of arrival and stillness, Airlink Castle is where Kerala's most <span class="gold-word">discerning</span> travellers choose to pause.
+        </blockquote>
+      </div>
+      <div class="castle-visual">
+        <img src="/images/hotel/presidential-livingroom.jpg" alt="Hotel Airlink Castle architectural detail">
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Suites Section -->
+  <section id="suites" class="fade-in">
+    <div class="section-title-wrapper">
+      <div class="section-title">The Accommodations</div>
+    </div>
+
+    <!-- Suite 1: Wayfarer -->
+    <div class="suite-row">
+      <div class="suite-image">
+        <img src="/images/hotel/transit-room.jpg" alt="The Wayfarer Suite at Hotel Airlink Castle">
+      </div>
+      <div class="suite-info">
+        <h3 class="suite-name">The Wayfarer Suite</h3>
+        <p class="suite-description">For those between worlds. A considered refuge with all that a single night demands.</p>
+        <span class="suite-action">Rates and availability on request</span>
+        <a href="https://wa.me/919961111111" class="suite-action gold-link">Enquire</a>
+      </div>
+    </div>
+
+    <!-- Suite 2: Castle Suite -->
+    <div class="suite-row reverse">
+      <div class="suite-image">
+        <img src="/images/hotel/executive-room.jpg" alt="The Castle Suite at Hotel Airlink Castle">
+      </div>
+      <div class="suite-info">
+        <h3 class="suite-name">The Castle Suite</h3>
+        <p class="suite-description">Unhurried space for the guest who expects more than comfort — they expect taste.</p>
+        <span class="suite-action">Rates and availability on request</span>
+        <a href="https://wa.me/919961111111" class="suite-action gold-link">Enquire</a>
+      </div>
+    </div>
+
+    <!-- Suite 3: Sovereign -->
+    <div class="suite-row">
+      <div class="suite-image">
+        <img src="/images/hotel/presidential-bedroom.jpg" alt="The Sovereign Suite at Hotel Airlink Castle">
+      </div>
+      <div class="suite-info">
+        <h3 class="suite-name">The Sovereign</h3>
+        <p class="suite-description">The castle's finest room. Reserved for those who require nothing explained.</p>
+        <span class="suite-action">Rates and availability on request</span>
+        <a href="https://wa.me/919961111111" class="suite-action gold-link">Enquire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Dining Section -->
+  <section id="dining" class="fade-in">
+    <div class="section-title-wrapper">
+      <div class="section-title">The Culinary Venues</div>
+    </div>
+
+    <div class="dining-grid">
+      <!-- Venue 1 -->
+      <div class="dining-card">
+        <div class="dining-image">
+          <img src="/images/hotel/royal-dine.jpg" alt="Royal Dine Experience">
+        </div>
+        <h3 class="dining-name">Royal Dine</h3>
+        <p class="dining-description"><em>The art of the long dinner.</em> Kerala's finest produce, composed with intention.</p>
+      </div>
+
+      <!-- Venue 2 -->
+      <div class="dining-card">
+        <div class="dining-image">
+          <img src="/images/hotel/castle-cafe.jpg" alt="Castle Cafe Experience">
+        </div>
+        <h3 class="dining-name">Castle Café</h3>
+        <p class="dining-description"><em>For mornings that belong to you.</em> Coffee, light meals, and no reason to hurry.</p>
+      </div>
+
+      <!-- Venue 3 -->
+      <div class="dining-card">
+        <div class="dining-image">
+          <img src="/images/hotel/simply-fish.jpg" alt="Simply Fish Experience">
+        </div>
+        <h3 class="dining-name">Simply Fish</h3>
+        <p class="dining-description"><em>The sea, honestly prepared.</em> A Kerala table the way it should be.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Editorial Stats Section -->
+  <section id="stats" class="fade-in">
+    <div class="stats-container">
+      <div class="stat-item">
+        <span class="stat-num">45</span>
+        <span class="stat-desc">Suites, each distinct</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-desc">Dining experiences, none ordinary</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">∞</span>
+        <span class="stat-desc">Minutes to departure, when ready</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1</span>
+        <span class="stat-desc">Standard. Exceptional.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Testimonials Section -->
+  <section id="testimonials" class="fade-in">
+    <div class="testimonial-container">
+      <span class="quote-mark">“</span>
+      <blockquote class="testimonial-text">
+        To find such absolute silence so close to departure is rare. The woodwork is exceptional, but it is the unhurried service that remains with you.
+      </blockquote>
+      <div class="testimonial-author">Sarah Jenkins · London</div>
+    </div>
+  </section>
+
+  <!-- 7. Arrival Section -->
+  <section id="arrival" class="fade-in">
+    <h2 class="arrival-headline">Arrival</h2>
+    <p class="arrival-address">
+      We are where Kerala begins — and where your journey pauses.<br>
+      Near Cochin International Airport, Nedumbassery, Athani P.O., Kochi, Kerala 683585, India
+    </p>
+    <div class="arrival-actions">
+      <a href="https://maps.google.com/?q=Hotel+Airlink+Castle+Kochi" target="_blank" rel="noopener noreferrer" class="cta-button">Open in Maps</a>
+      <a href="https://wa.me/919961111111" class="arrival-link">Speak with our team →</a>
+    </div>
+  </section>
+
+  <!-- 8. Footer Section -->
+  <footer>
+    <div class="footer-logo">Airlink Castle</div>
+    <div class="footer-divider"></div>
+    <div class="footer-links">
+      <a href="#suites">Suites</a>
+      <a href="#dining">Dining</a>
+      <a href="#arrival">Arrival</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Hotel Airlink Castle. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Header background change on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Slow scroll fade-in observer
+    const faders = document.querySelectorAll('.fade-in');
+    const fadeOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, fadeOptions);
+
+    faders.forEach(fader => {
+      fadeObserver.observe(fader);
+    });
+  </script>
+</body>
+</html>

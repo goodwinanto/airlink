@@ -1,58 +1,661 @@
-@import "tailwindcss";
-
-@theme {
-  --font-serif: var(--font-playfair), serif;
-  --font-sans: var(--font-inter), sans-serif;
-  --color-gold-light: #f4df96;
-  --color-gold-premium: #D4AF37;
-  --color-gold-dark: #b8931d;
+/* CSS resets and custom variables */
+:root {
+  --bg-obsidian: #080808;
+  --accent-gold: #B8972A;
+  --text-ivory: #F5F0E8;
+  --text-muted: #A8A095;
+  --border-color: rgba(184, 151, 42, 0.2);
 }
 
-:root {
-  --background: #fcfbfa; /* Luxury warm ivory white */
-  --foreground: #1c1917; /* Deep charcoal stone text */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Non-negotiable sharp corners */
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-obsidian);
+  color: var(--text-ivory);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg-obsidian);
+  overflow-x: hidden;
 }
 
-/* Premium micro-interactions & decorations */
-.luxury-gradient-text {
-  background: linear-gradient(135deg, #1c1917 40%, #D4AF37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Typography */
+h1, h2, h3, h4, .serif-font {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
-.gold-glow {
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
+p, .sans-font {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
 }
 
-.gold-glow-hover:hover {
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.4s ease;
 }
 
-.glassmorphism {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+/* Clean navigation header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background-color 0.6s ease, border-bottom 0.6s ease;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f5f5f4;
-}
-::-webkit-scrollbar-thumb {
-  background: #d6d3d1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+header.scrolled {
+  background-color: rgba(8, 8, 8, 0.95);
+  border-bottom: 1px solid rgba(184, 151, 42, 0.1);
+  backdrop-filter: blur(10px);
 }
 
+.nav-container {
+  max-w: 1400px;
+  margin: 0 auto;
+  padding: 25px 40px;
+  display: flex;
+  justify-content: justify;
+  align-items: center;
+}
 
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-main {
+  font-size: 20px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.logo-sub {
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.nav-links a {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent-gold);
+}
+
+/* Restrained CTA Button */
+.cta-button {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--accent-gold);
+  color: var(--bg-obsidian);
+}
+
+/* Section padding - Extreme luxury spacing */
+section {
+  padding-top: 140px;
+  padding-bottom: 140px;
+  position: relative;
+}
+
+/* Fade-in transition using scroll entry */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 1. Hero section */
+#hero {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(8, 8, 8, 0.55), rgba(8, 8, 8, 0.85)), url('/images/hotel/pool-night.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-w: 900px;
+  padding: 0 30px;
+}
+
+.hero-subline {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--accent-gold);
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.hero-headline {
+  font-size: 64px;
+  color: var(--text-ivory);
+  line-height: 1.15;
+  margin-bottom: 45px;
+  font-style: italic;
+}
+
+/* 2. The Castle introduction */
+#castle {
+  max-w: 1400px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.castle-layout {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.castle-quote-container {
+  width: 60%;
+}
+
+.castle-quote {
+  font-size: 38px;
+  line-height: 1.4;
+  color: var(--text-ivory);
+  font-style: italic;
+}
+
+.castle-quote .gold-word {
+  color: var(--accent-gold);
+  font-style: normal;
+}
+
+.castle-visual {
+  width: 40%;
+  height: 550px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.castle-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(75%);
+  transition: transform 1.5s ease;
+}
+
+.castle-visual:hover img {
+  transform: scale(1.03);
+}
+
+/* 3. Suites alternating layout */
+#suites {
+  max-w: 1400px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 180px;
+}
+
+.section-title-wrapper {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 14px;
+  letter-spacing: 0.35em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.suite-row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+
+.suite-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.suite-image {
+  width: 55%;
+  height: 580px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.suite-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(80%);
+  transition: transform 1.5s ease;
+}
+
+.suite-image:hover img {
+  transform: scale(1.02);
+}
+
+.suite-info {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.suite-name {
+  font-size: 40px;
+  color: var(--text-ivory);
+  margin-bottom: 25px;
+}
+
+.suite-description {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 35px;
+  max-w: 480px;
+}
+
+.suite-action {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--text-ivory);
+  font-weight: 400;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 4px;
+  margin-top: 10px;
+}
+
+.suite-action.gold-link {
+  color: var(--accent-gold);
+  border-bottom: 1px solid rgba(184, 151, 42, 0.4);
+}
+
+.suite-action.gold-link:hover {
+  border-bottom-color: var(--accent-gold);
+}
+
+/* 4. Dining experiences */
+#dining {
+  max-w: 1400px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.dining-grid {
+  display: grid;
+  grid-template-cols: repeat(3, 1fr);
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.dining-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.dining-image {
+  height: 400px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: 30px;
+}
+
+.dining-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(75%);
+  transition: transform 1.5s ease;
+}
+
+.dining-card:hover .dining-image img {
+  transform: scale(1.02);
+}
+
+.dining-name {
+  font-size: 28px;
+  color: var(--text-ivory);
+  margin-bottom: 12px;
+}
+
+.dining-description {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-w: 360px;
+}
+
+.dining-description em {
+  color: var(--text-ivory);
+  font-style: normal;
+}
+
+/* 5. Stats Section */
+#stats {
+  background-color: #050505;
+  border-top: 1px solid rgba(184, 151, 42, 0.1);
+  border-bottom: 1px solid rgba(184, 151, 42, 0.1);
+}
+
+.stats-container {
+  max-w: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-cols: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  color: var(--accent-gold);
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.stat-desc {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-ivory);
+  font-weight: 300;
+}
+
+/* 6. Testimonials */
+#testimonials {
+  background-color: var(--bg-obsidian);
+  overflow: hidden;
+}
+
+.testimonial-container {
+  max-w: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+  position: relative;
+}
+
+.quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 180px;
+  color: var(--accent-gold);
+  line-height: 0.1;
+  margin-bottom: 60px;
+  display: block;
+  opacity: 0.6;
+}
+
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--text-ivory);
+  margin-bottom: 40px;
+}
+
+.testimonial-author {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* 7. Arrival */
+#arrival {
+  max-w: 900px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+
+.arrival-headline {
+  font-size: 40px;
+  margin-bottom: 25px;
+  color: var(--text-ivory);
+}
+
+.arrival-address {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+.arrival-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.arrival-link {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  border-bottom: 1px solid rgba(184, 151, 42, 0.4);
+  padding-bottom: 4px;
+}
+
+.arrival-link:hover {
+  border-bottom-color: var(--accent-gold);
+}
+
+/* 8. Footer */
+footer {
+  background-color: #030303;
+  padding: 100px 40px 60px 40px;
+  border-top: 1px solid rgba(184, 151, 42, 0.08);
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  color: var(--text-ivory);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.footer-divider {
+  width: 80px;
+  height: 1px;
+  background-color: var(--accent-gold);
+  margin: 0 auto 40px auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.footer-links a {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold);
+}
+
+.footer-copy {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(168, 160, 149, 0.4);
+}
+
+/* Responsive styles */
+@media (max-w: 1024px) {
+  section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  
+  .hero-headline {
+    font-size: 48px;
+  }
+
+  .castle-layout {
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .castle-quote-container, .castle-visual {
+    width: 100%;
+  }
+
+  .castle-visual {
+    height: 400px;
+  }
+
+  .suite-row {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .suite-row.reverse {
+    flex-direction: column;
+  }
+
+  .suite-image, .suite-info {
+    width: 100%;
+  }
+
+  .suite-image {
+    height: 400px;
+  }
+
+  .dining-grid {
+    grid-template-cols: 1fr;
+    gap: 70px;
+  }
+
+  .stats-container {
+    grid-template-cols: repeat(2, 1fr);
+    gap: 50px;
+  }
+}
+
+@media (max-w: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-container {
+    justify-content: space-between;
+  }
+
+  .hero-headline {
+    font-size: 38px;
+  }
+
+  .castle-quote {
+    font-size: 28px;
+  }
+
+  .suite-name {
+    font-size: 32px;
+  }
+
+  .stats-container {
+    grid-template-cols: 1fr;
+  }
+
+  .testimonial-text {
+    font-size: 24px;
+  }
+
+  .arrival-headline {
+    font-size: 30px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
