@@ -65,7 +65,7 @@ export default function Home() {
       </header>
 
       {/* 1. Hero Section */}
-      <section id="hero">
+      <section id="hero" className="hero">
         <div className="hero-image-bg"></div>
         <div className="hero-content">
           <div className="hero-subline">COCHIN · KERALA · INDIA</div>
@@ -161,7 +161,7 @@ export default function Home() {
           <div className="section-title">The Culinary Venues</div>
         </div>
 
-        <div className="dining-grid">
+        <div className="dining-grid dining-row">
           {/* Venue 1 */}
           <div className="dining-card">
             <div className="dining-image">
@@ -199,7 +199,7 @@ export default function Home() {
 
       {/* 5. Editorial Stats Section */}
       <section id="stats" className="fade-in">
-        <div className="stats-container">
+        <div className="stats-container stats-row">
           <div className="stat-item">
             <span className="stat-num">45</span>
             <span className="stat-desc">Suites, each distinct</span>
@@ -258,7 +258,7 @@ export default function Home() {
       <footer>
         <div className="footer-logo">Airlink Castle</div>
         <div className="footer-divider"></div>
-        <div className="footer-links">
+        <div className="footer-links footer-nav">
           <a href="#suites">Suites</a>
           <a href="#dining">Dining</a>
           <a href="#arrival">Arrival</a>

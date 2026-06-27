@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["400", "500"],
   display: "swap",
   variable: "--font-cormorant",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400"],
   display: "swap",
   variable: "--font-dmsans",
 });
@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} h-full scroll-smooth antialiased`}
+      className={`${playfair.variable} ${inter.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#080808] text-[#F5F0E8]">
+      <body className="min-h-full flex flex-col bg-[#F8F4EE] text-[#1A1614]">
         {children}
       </body>
     </html>
